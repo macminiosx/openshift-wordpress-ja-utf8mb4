@@ -1,0 +1,37 @@
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+</IfModule>
+
+# END WordPress
+
+Options -Indexes
+
+
+
+AddHandler cgi-script .cgi
+Options +ExecCGI
+
+SetEnv TZ Asia/Tokyo
+
+SetEnvIf User-Agent "MJ12bot" Bad_downloader
+SetEnvIf User-Agent "Baiduspider" Bad_downloader
+SetEnvIf User-Agent "YandexBot" Bad_downloader
+SetEnvIf User-Agent "AhrefsBot" Bad_downloader
+SetEnvIf User-Agent "ichiro" Bad_downloader
+SetEnvIf User-Agent "go.mail.ru" Bad_downloader
+SetEnvIf User-Agent "360Spider" Bad_downloader
+SetEnvIf User-Agent "meanpathbot" Bad_downloader
+SetEnvIf User-Agent "zh-CN" Bad_downloader
+SetEnvIf Referer "semalt.com" Bad_downloader
+SetEnvIf User-Agent "^$" Bad_downloader
+Order allow,deny
+Allow from all
+deny from env=Bad_downloader
+
